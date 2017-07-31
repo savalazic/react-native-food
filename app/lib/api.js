@@ -4,8 +4,6 @@ class Api {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'dataType': 'json',
-
-      'X-Mashape-Key: IAIk3rJuI6mshOuUQ32Y7GLYFaZup142jWvjsnSaagpazFX8GB',
     }
   }
 
@@ -14,23 +12,22 @@ class Api {
   }
 
   static put(route, params) {
-    return this.xhr(route, params, 'PUT');
+    return this.xhr(route, params, 'PUT')
   }
 
   static post(route, params) {
-    return this.xhr(route, params, 'POST');
+    return this.xhr(route, params, 'POST')
   }
 
   static delete(route, params) {
-    return this.xhr(route, params, 'DELETE');
+    return this.xhr(route, params, 'DELETE')
   }
 
   static xhr(route, params, verb) {
-    const host = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com';
-    const url = `${host}${route}`;
+    const host = 'http://www.recipepuppy.com'
+    const url = `${host}${route}`
     let options = Object.assign({ method: verb }, params ? { body: JSON.stringify(params) } : null);
-    options.headers = Api.headers();
-
+    options.headers = Api.headers()
     return fetch(url, options).then(resp => {
       let json = resp.json();
       if (resp.ok) {
@@ -40,5 +37,4 @@ class Api {
     }).then(json => json.results);
   }
 }
-
-export default Api;
+export default Api
